@@ -20,31 +20,31 @@ function entityShape(type: Entity['type']): string {
 }
 
 function nodeColor(type: Entity['type'], riskTier: string): string {
-  if (type === 'victim') return '#EEF0F2';
-  if (riskTier === 'Critical') return '#A5281B14';
-  if (riskTier === 'High') return '#B45F0614';
-  if (riskTier === 'Medium') return '#8A6D0014';
-  return '#FFFFFF';
+  if (type === 'victim') return '#021D24';
+  if (riskTier === 'Critical') return 'rgba(255, 69, 58, 0.2)';
+  if (riskTier === 'High') return 'rgba(255, 159, 10, 0.2)';
+  if (riskTier === 'Medium') return 'rgba(255, 214, 10, 0.2)';
+  return '#08323D';
 }
 
 function nodeBorderColor(type: Entity['type'], riskTier: string): string {
-  if (type === 'victim') return '#1C232B';
-  if (riskTier === 'Critical') return '#A5281B';
-  if (riskTier === 'High') return '#B45F06';
-  if (riskTier === 'Medium') return '#8A6D00';
-  return '#AEB5BD';
+  if (type === 'victim') return '#FFFFFF';
+  if (riskTier === 'Critical') return '#FF453A';
+  if (riskTier === 'High') return '#FF9F0A';
+  if (riskTier === 'Medium') return '#FFD60A';
+  return '#174E5D';
 }
 
 function edgeStyle(kind: FlowEdge['kind']) {
-  if (kind === 'money') return { lineColor: '#1C232B', lineStyle: 'solid', width: 2 };
-  if (kind === 'call' || kind === 'sms') return { lineColor: '#196367', lineStyle: 'solid', width: 1 };
-  return { lineColor: '#5B6570', lineStyle: 'dashed', width: 1 };
+  if (kind === 'money') return { lineColor: '#6AE6EF', lineStyle: 'solid', width: 2.5 };
+  if (kind === 'call' || kind === 'sms') return { lineColor: '#98FEA4', lineStyle: 'solid', width: 1.5 };
+  return { lineColor: '#60868F', lineStyle: 'dashed', width: 1 };
 }
 
 function identityEdgeStyle(strength: IdentityLink['strength']) {
-  if (strength === 'Strong') return { lineColor: '#1C232B', lineStyle: 'solid', width: 2 };
-  if (strength === 'Moderate') return { lineColor: '#5B6570', lineStyle: 'solid', width: 1.5 };
-  return { lineColor: '#B45F06', lineStyle: 'dashed', width: 1 };
+  if (strength === 'Strong') return { lineColor: '#CCF300', lineStyle: 'solid', width: 2 };
+  if (strength === 'Moderate') return { lineColor: '#6AE6EF', lineStyle: 'solid', width: 1.5 };
+  return { lineColor: '#FF9F0A', lineStyle: 'dashed', width: 1 };
 }
 
 function buildElements(
@@ -292,7 +292,7 @@ export default function NetworkPage() {
             'text-margin-y': 4,
             'font-size': 11,
             'font-family': 'Inter, sans-serif',
-            'color': '#1C232B',
+            'color': '#FFFFFF',
             'text-max-width': 100,
             'text-wrap': 'wrap',
             shape: (ele: NodeSingular) => entityShape(ele.data('type') as Entity['type']),
@@ -306,9 +306,9 @@ export default function NetworkPage() {
         {
           selector: 'node:selected',
           style: {
-            'border-color': '#196367',
+            'border-color': '#CCF300',
             'border-width': 3,
-            'outline-color': '#196367',
+            'outline-color': '#CCF300',
             'outline-width': 2,
             'outline-offset': 2,
           } as never,
@@ -325,14 +325,14 @@ export default function NetworkPage() {
             label: 'data(label)',
             'font-size': 10,
             'font-family': 'Inter, sans-serif',
-            color: '#5B6570',
+            color: '#A2C2C8',
             'text-rotation': 'autorotate',
             'text-margin-y': -6,
           } as never,
         },
         {
           selector: 'edge:selected',
-          style: { 'line-color': '#196367', width: 3 } as never,
+          style: { 'line-color': '#CCF300', width: 3 } as never,
         },
       ],
       layout: {

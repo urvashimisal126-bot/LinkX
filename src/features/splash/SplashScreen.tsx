@@ -111,13 +111,13 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
         position: 'fixed',
         inset: 0,
         zIndex: 99999,
-        background: '#EEF0F2',
+        background: 'radial-gradient(circle at 50% 30%, #05262F 0%, #021D24 80%)',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         userSelect: 'none',
-        transition: 'opacity 150ms ease-out',
+        transition: 'opacity 180ms cubic-bezier(0.16, 1, 0.3, 1)',
         opacity: fadingOut ? 0 : 1,
         pointerEvents: fadingOut ? 'none' : 'auto',
       }}
@@ -142,13 +142,14 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
 
         {/* Clear space & Loading Area */}
         <div style={{ marginTop: 36, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          {/* 2px Teal Progress Line */}
+          {/* Neon Lime Progress Line */}
           <div
             style={{
               width: 180,
-              height: 2,
-              background: 'var(--border)',
-              borderRadius: 1,
+              height: 3,
+              background: 'var(--panel-elevated)',
+              border: '1px solid var(--border)',
+              borderRadius: 2,
               overflow: 'hidden',
               marginBottom: 12,
             }}
@@ -157,8 +158,9 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
               style={{
                 height: '100%',
                 background: 'var(--accent)',
+                boxShadow: '0 0 10px rgba(204, 243, 0, 0.5)',
                 width: `${progress}%`,
-                transition: 'width 250ms ease-out',
+                transition: 'width 250ms cubic-bezier(0.16, 1, 0.3, 1)',
               }}
             />
           </div>
@@ -183,11 +185,15 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
             style={{
               fontFamily: 'Inter, system-ui, sans-serif',
               fontSize: 11,
-              color: 'var(--muted)',
-              opacity: 0.8,
+              color: 'var(--cyan)',
+              opacity: 0.9,
               display: 'flex',
               alignItems: 'center',
-              gap: 5,
+              gap: 6,
+              background: 'var(--cyan-tint)',
+              padding: '2px 8px',
+              borderRadius: 12,
+              border: '1px solid rgba(106, 230, 239, 0.25)',
             }}
           >
             <span
@@ -196,6 +202,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
                 height: 5,
                 borderRadius: '50%',
                 background: 'var(--accent)',
+                boxShadow: '0 0 6px var(--accent)',
                 display: 'inline-block',
               }}
             />

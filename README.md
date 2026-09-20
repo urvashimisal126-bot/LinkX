@@ -125,6 +125,15 @@ LinkX comes bundled with benchmark case **`LX-2026-0918-A`** representing a real
 
 ---
 
+## Credits & Acknowledgements
+
+UI inspired by Dribbble references:
+- [Reference 1](https://cdn.dribbble.com/userupload/43714181/file/original-2f60c90bf580636d50c13b1fd53d0bbb.mp4)
+- [Reference 2](https://cdn.dribbble.com/userupload/43714182/file/original-e29bd07ac546df54403fd688746eab77.mp4)
+
+---
+
 ## License
 
 This project is licensed under the MIT License.
+

@@ -20,6 +20,10 @@
 - D-18: Implemented 1.6s pure CSS transform/opacity keyframe animation demonstrating the evidence correlation concept: parts slide along the linking axis, interlock with a subtle 2.5px latch overshoot click, followed by wordmark fade-in.
 - D-19: Connected startup splash progress to actual engine initialization (`document.fonts.ready`, static sample manifest check, and store initialization) with a 1.6s minimum display, 3.0s safety ceiling, and 150ms exit fade.
 - D-20: Implemented `sessionStorage` single-session display rule, hidden `Shift+L` instant replay shortcut, `prefers-reduced-motion` 600ms static bypass, automatic focus handover to `#main-content`, and aria-live status announcements.
-- D-21: Upgraded animated brand component to clean solid 2-part segmentation (`Part L` + `Part X` in `<LinkXMarkAnimated />`) matching Image 2 with pure solid teal (`#196367`) on `#EEF0F2` background, eliminating all outline and ghosting artifacts while preserving the 1.6s interlocking animation.
+- D-22: UI inspired by Dribbble references:
+  - Reference 1: https://cdn.dribbble.com/userupload/43714181/file/original-2f60c90bf580636d50c13b1fd53d0bbb.mp4
+  - Reference 2: https://cdn.dribbble.com/userupload/43714182/file/original-e29bd07ac546df54403fd688746eab77.mp4
+- D-23: Implemented measured CyberHacx color tokens in `src/index.css` (`#021D24` deep canvas, `#05262F` panel surface, `#08323D` elevated tables, `#CCF300` electric lime accent, `#6AE6EF` vibrant cyan, `#98FEA4` verified mint) and cyber grid matrix background texture.
+- D-24: Created central motion file `src/lib/motion.ts` with standardized cubic-bezier `(0.16, 1, 0.3, 1)` easing curves, and created unified `src/components/ui/Icon.tsx` wrapper component.
 
 
