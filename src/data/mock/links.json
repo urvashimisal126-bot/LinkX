@@ -1,0 +1,101 @@
+[
+  {
+    "id": "LINK-N1-N2",
+    "entityA": "ENT-N1",
+    "entityB": "ENT-N2",
+    "strength": "Strong",
+    "confidence": 0.99,
+    "rule": "shared-imei",
+    "reason": "N1 (MSISDN 9007198254) and N2 (MSISDN 9999000002) used the same handset IMEI-1 (866123045678901) — a stable hardware identifier confirmed across CDR from Telecom A and B.",
+    "evidenceRefs": [
+      { "exhibitId": "E01", "row": 2, "field": "IMEI", "excerpt": "866123045678901" },
+      { "exhibitId": "E02", "row": 3, "field": "Device IMEI", "excerpt": "866123045678901" }
+    ],
+    "independentSources": 2,
+    "decision": "merged",
+    "decisionNote": null,
+    "decisionTime": null
+  },
+  {
+    "id": "LINK-M4-N2",
+    "entityA": "ENT-M4",
+    "entityB": "ENT-N2",
+    "strength": "Strong",
+    "confidence": 0.97,
+    "rule": "shared-registered-mobile",
+    "reason": "M4 bank account (ACC445566778) has registered mobile 9007198254, which is the same MSISDN as N2 — confirmed from bank UPI registration records.",
+    "evidenceRefs": [
+      { "exhibitId": "E06", "row": 3, "field": "reg_mobile", "excerpt": "9007198254" }
+    ],
+    "independentSources": 1,
+    "decision": "merged",
+    "decisionNote": null,
+    "decisionTime": null
+  },
+  {
+    "id": "LINK-M3-IP",
+    "entityA": "ENT-M3",
+    "entityB": "ENT-IP1",
+    "strength": "Moderate",
+    "confidence": 0.82,
+    "rule": "same-public-ip-10min",
+    "reason": "M3 account UPI transaction at 14:32:18 and IP 103.45.12.88 session ending 14:15 share the same public IP within the overlap window — corroborated by IPDR session records.",
+    "evidenceRefs": [
+      { "exhibitId": "E03", "row": 2, "field": "public_ip", "excerpt": "103.45.12.88" },
+      { "exhibitId": "E05", "row": 1, "field": "Reference", "excerpt": "UPI26918123456003" }
+    ],
+    "independentSources": 2,
+    "decision": "merged",
+    "decisionNote": null,
+    "decisionTime": null
+  },
+  {
+    "id": "LINK-M3-TIMING",
+    "entityA": "ENT-M3",
+    "entityB": "ENT-N1",
+    "strength": "Moderate",
+    "confidence": 0.78,
+    "rule": "identical-fanout-timing",
+    "reason": "M3 received ₹2,45,000 at 14:32:18 — within 38 seconds of N1's call ending — and immediately began ATM withdrawals, consistent with coordinated fan-out timing from the same operator.",
+    "evidenceRefs": [
+      { "exhibitId": "E01", "row": 2, "field": "Call_Start", "excerpt": "18/09/2026 13:52:08" },
+      { "exhibitId": "E05", "row": 1, "field": "Date", "excerpt": "18-09-2026 14:32:18" }
+    ],
+    "independentSources": 2,
+    "decision": "merged",
+    "decisionNote": null,
+    "decisionTime": null
+  },
+  {
+    "id": "LINK-N3-SUBNET",
+    "entityA": "ENT-N3",
+    "entityB": "ENT-IP1",
+    "strength": "Weak",
+    "confidence": 0.28,
+    "rule": "same-subnet-24",
+    "reason": "N3 (MSISDN 9998887776) used public IP 103.45.12.91, which is in the same /24 subnet as the C2 IP 103.45.12.88 — subnet overlap alone is insufficient to establish identity.",
+    "evidenceRefs": [
+      { "exhibitId": "E03", "row": 7, "field": "public_ip", "excerpt": "103.45.12.91" }
+    ],
+    "independentSources": 1,
+    "decision": "candidate",
+    "decisionNote": null,
+    "decisionTime": null
+  },
+  {
+    "id": "LINK-M5-NAME",
+    "entityA": "ENT-M5",
+    "entityB": "ENT-VICTIM",
+    "strength": "Weak",
+    "confidence": 0.18,
+    "rule": "fuzzy-name-similarity",
+    "reason": "M5 account holder name 'Rajesh K.' has 82% name similarity to victim 'Rajesh Kumar' — name similarity alone cannot establish identity and may represent coincidence.",
+    "evidenceRefs": [
+      { "exhibitId": "E04", "row": 2, "field": "Narration", "excerpt": "Rajesh Kumar" }
+    ],
+    "independentSources": 1,
+    "decision": "candidate",
+    "decisionNote": null,
+    "decisionTime": null
+  }
+]

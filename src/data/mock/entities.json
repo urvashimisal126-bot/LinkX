@@ -1,0 +1,228 @@
+[
+  {
+    "id": "ENT-VICTIM",
+    "type": "victim",
+    "label": "Victim (V1)",
+    "identifiers": { "account": "XX4321", "mobile": "9876543210", "name": "Rajesh Kumar (victim)" },
+    "clusterId": null,
+    "riskScore": 0,
+    "riskTier": "Low",
+    "signals": [],
+    "evidenceRefs": [
+      { "exhibitId": "E01", "row": 1, "field": "Calling_No", "excerpt": "9876543210" },
+      { "exhibitId": "E04", "row": 2, "field": "Narration", "excerpt": "debited from A/C XX4321" }
+    ]
+  },
+  {
+    "id": "ENT-M1",
+    "type": "account",
+    "label": "M1 (Mule account 1)",
+    "identifiers": { "account": "ACC001122334", "upi_vpa": "9007198254@oksbi", "bank": "Bank X", "mobile": "9007198254" },
+    "clusterId": null,
+    "riskScore": 63,
+    "riskTier": "High",
+    "signals": [
+      { "label": "Multi-hop routing within 10 minutes", "score": 25, "detail": "Funds forwarded through 2+ accounts within 10 minutes of receipt" },
+      { "label": "Pass-through ratio above 95%", "score": 20, "detail": "Debits exceed 95% of credits — typical pass-through mule behaviour" },
+      { "label": "High transaction velocity", "score": 8, "detail": "More than 5 transactions in 15 minutes" },
+      { "label": "Proximity to cash-out node", "score": 10, "detail": "One or two hops from a confirmed cash-out point" }
+    ],
+    "evidenceRefs": [
+      { "exhibitId": "E04", "row": 1, "field": "Credit", "excerpt": "485000" },
+      { "exhibitId": "E04", "row": 2, "field": "Debit", "excerpt": "240000" },
+      { "exhibitId": "E06", "row": 1, "field": "payee_vpa", "excerpt": "9007198254@oksbi" }
+    ]
+  },
+  {
+    "id": "ENT-M2",
+    "type": "account",
+    "label": "M2 (Mule account 2)",
+    "identifiers": { "account": "ACC987654321", "bank": "Bank Y", "upi_vpa": "m2mule@upi" },
+    "clusterId": null,
+    "riskScore": 55,
+    "riskTier": "High",
+    "signals": [
+      { "label": "Multi-hop routing within 10 minutes", "score": 25, "detail": "Funds forwarded through 2+ accounts within 10 minutes of receipt" },
+      { "label": "Proximity to cash-out node", "score": 10, "detail": "One or two hops from a confirmed cash-out point" },
+      { "label": "UPI pass-through pattern", "score": 10, "detail": "UPI credit immediately followed by a larger debit" },
+      { "label": "High transaction velocity", "score": 8, "detail": "More than 5 transactions in 15 minutes" }
+    ],
+    "evidenceRefs": [
+      { "exhibitId": "E04", "row": 2, "field": "Narration", "excerpt": "UPI/DR/M2-ACC987654321/FORWARD" },
+      { "exhibitId": "E06", "row": 2, "field": "payee_vpa", "excerpt": "m2mule@upi" }
+    ]
+  },
+  {
+    "id": "ENT-M3",
+    "type": "account",
+    "label": "M3 (Mule account 3)",
+    "identifiers": { "account": "ACC112233445", "bank": "Bank Z", "upi_vpa": "m3cash@axl" },
+    "clusterId": "CLUSTER-OPERATOR",
+    "riskScore": 85,
+    "riskTier": "Critical",
+    "signals": [
+      { "label": "Multi-hop routing within 10 minutes", "score": 25, "detail": "Funds forwarded through 2+ accounts within 10 minutes of receipt" },
+      { "label": "Pass-through ratio above 95%", "score": 20, "detail": "Debits exceed 95% of credits — typical pass-through mule behaviour" },
+      { "label": "Rapid ATM withdrawals", "score": 10, "detail": "₹2,00,000 withdrawn over two ATM transactions within minutes" },
+      { "label": "Proximity to cash-out node", "score": 10, "detail": "One or two hops from a confirmed cash-out point" },
+      { "label": "Linked to confirmed mule", "score": 7, "detail": "Shares a Strong identity link with a confirmed mule account" },
+      { "label": "High transaction velocity", "score": 8, "detail": "More than 5 transactions in 15 minutes" }
+    ],
+    "evidenceRefs": [
+      { "exhibitId": "E05", "row": 1, "field": "Deposit", "excerpt": "245000" },
+      { "exhibitId": "E05", "row": 2, "field": "Withdrawal", "excerpt": "100000" },
+      { "exhibitId": "E05", "row": 3, "field": "Withdrawal", "excerpt": "100000" }
+    ]
+  },
+  {
+    "id": "ENT-M4",
+    "type": "account",
+    "label": "M4 (Mule account 4 / exchange feeder)",
+    "identifiers": { "account": "ACC445566778", "bank": "Bank P", "upi_vpa": "suspect@ybl", "mobile": "9007198254" },
+    "clusterId": "CLUSTER-OPERATOR",
+    "riskScore": 78,
+    "riskTier": "Critical",
+    "signals": [
+      { "label": "Multi-hop routing within 10 minutes", "score": 25, "detail": "Funds forwarded through 2+ accounts within 10 minutes of receipt" },
+      { "label": "Pass-through ratio above 95%", "score": 20, "detail": "Debits exceed 95% of credits — typical pass-through mule behaviour" },
+      { "label": "Proximity to cash-out node", "score": 10, "detail": "One or two hops from a confirmed cash-out point" },
+      { "label": "Linked to confirmed mule", "score": 7, "detail": "Shares a Strong identity link with a confirmed mule account" },
+      { "label": "High transaction velocity", "score": 8, "detail": "More than 5 transactions in 15 minutes" },
+      { "label": "SIM switching (3+ SIMs on one IMEI, 7 days)", "score": 8, "detail": "4 different SIM cards observed on IMEI-1 in the 7 days before the fraud" }
+    ],
+    "evidenceRefs": [
+      { "exhibitId": "E06", "row": 3, "field": "payee_vpa", "excerpt": "suspect@ybl" }
+    ]
+  },
+  {
+    "id": "ENT-E1",
+    "type": "cash_out",
+    "label": "E1 (Crypto exchange deposit)",
+    "identifiers": { "exchange": "CryptoXchange", "deposit_ref": "EX26918001", "amount": "230000" },
+    "clusterId": "CLUSTER-OPERATOR",
+    "riskScore": 90,
+    "riskTier": "Critical",
+    "signals": [
+      { "label": "Proximity to cash-out node", "score": 10, "detail": "Terminal cash-out node — exchange deposit" },
+      { "label": "Linked to confirmed mule", "score": 7, "detail": "Shares a Strong identity link with a confirmed mule account" },
+      { "label": "Multi-hop routing within 10 minutes", "score": 25, "detail": "Funds forwarded through 2+ accounts within 10 minutes of receipt" },
+      { "label": "Pass-through ratio above 95%", "score": 20, "detail": "Debits exceed 95% of credits — typical pass-through mule behaviour" },
+      { "label": "High transaction velocity", "score": 8, "detail": "More than 5 transactions in 15 minutes" },
+      { "label": "UPI pass-through pattern", "score": 10, "detail": "UPI credit immediately followed by a larger debit" }
+    ],
+    "evidenceRefs": [
+      { "exhibitId": "E06", "row": 4, "field": "payee_vpa", "excerpt": "cryptoxchange@upi" }
+    ]
+  },
+  {
+    "id": "ENT-N1",
+    "type": "phone",
+    "label": "N1 (Spoofed caller SIM)",
+    "identifiers": { "msisdn": "9007198254", "imei": "866123045678901", "imsi": "404101234567890" },
+    "clusterId": "CLUSTER-OPERATOR",
+    "riskScore": 80,
+    "riskTier": "Critical",
+    "signals": [
+      { "label": "SIM switching (3+ SIMs on one IMEI, 7 days)", "score": 15, "detail": "4 different SIM cards observed on IMEI-1 in the 7 days before the fraud" },
+      { "label": "Spoofed inbound call", "score": 10, "detail": "Caller ID spoofed to appear as a known institution" },
+      { "label": "Proximity to cash-out node", "score": 10, "detail": "One or two hops from a confirmed cash-out point" },
+      { "label": "Linked to confirmed mule", "score": 7, "detail": "Shares a Strong identity link with a confirmed mule account" },
+      { "label": "Multi-hop routing within 10 minutes", "score": 25, "detail": "Funds forwarded through 2+ accounts within 10 minutes of receipt" },
+      { "label": "High transaction velocity", "score": 8, "detail": "More than 5 transactions in 15 minutes" }
+    ],
+    "evidenceRefs": [
+      { "exhibitId": "E01", "row": 2, "field": "Calling_No", "excerpt": "9007198254" },
+      { "exhibitId": "E01", "row": 2, "field": "IMEI", "excerpt": "866123045678901" }
+    ]
+  },
+  {
+    "id": "ENT-N2",
+    "type": "phone",
+    "label": "N2 (SMS sender SIM)",
+    "identifiers": { "msisdn": "9999000002", "imei": "866123045678901", "imsi": "404101234567891" },
+    "clusterId": "CLUSTER-OPERATOR",
+    "riskScore": 80,
+    "riskTier": "Critical",
+    "signals": [
+      { "label": "SIM switching (3+ SIMs on one IMEI, 7 days)", "score": 15, "detail": "4 different SIM cards observed on IMEI-1 in the 7 days before the fraud" },
+      { "label": "Proximity to cash-out node", "score": 10, "detail": "One or two hops from a confirmed cash-out point" },
+      { "label": "Linked to confirmed mule", "score": 7, "detail": "Shares a Strong identity link with a confirmed mule account" },
+      { "label": "Multi-hop routing within 10 minutes", "score": 25, "detail": "Funds forwarded through 2+ accounts within 10 minutes of receipt" },
+      { "label": "High transaction velocity", "score": 8, "detail": "More than 5 transactions in 15 minutes" }
+    ],
+    "evidenceRefs": [
+      { "exhibitId": "E07", "field": "sms_log[0].from", "excerpt": "9999000002 (APK link sender)" }
+    ]
+  },
+  {
+    "id": "ENT-DEVICE",
+    "type": "device",
+    "label": "IMEI-1 (Suspect handset)",
+    "identifiers": { "imei": "866123045678901" },
+    "clusterId": "CLUSTER-OPERATOR",
+    "riskScore": 80,
+    "riskTier": "Critical",
+    "signals": [
+      { "label": "SIM switching (3+ SIMs on one IMEI, 7 days)", "score": 15, "detail": "4 different SIM cards observed on IMEI-1 in the 7 days before the fraud" }
+    ],
+    "evidenceRefs": [
+      { "exhibitId": "E01", "row": 2, "field": "IMEI", "excerpt": "866123045678901" }
+    ]
+  },
+  {
+    "id": "ENT-IP1",
+    "type": "ip",
+    "label": "IP 103.45.12.88 (C2 / phish origin)",
+    "identifiers": { "ip": "103.45.12.88", "asn": "AS45609", "geo": "Mumbai, MH, IN" },
+    "clusterId": "CLUSTER-OPERATOR",
+    "riskScore": 75,
+    "riskTier": "Critical",
+    "signals": [
+      { "label": "Spoofed email header (SPF fail)", "score": 15, "detail": "From address and Return-Path differ; SPF = fail" },
+      { "label": "Proximity to cash-out node", "score": 10, "detail": "One or two hops from a confirmed cash-out point" }
+    ],
+    "evidenceRefs": [
+      { "exhibitId": "E07", "field": "X-Originating-IP", "excerpt": "103.45.12.88" },
+      { "exhibitId": "E03", "row": 1, "field": "public_ip", "excerpt": "103.45.12.88" }
+    ]
+  },
+  {
+    "id": "ENT-N3",
+    "type": "phone",
+    "label": "N3 (Weak candidate — subnet only)",
+    "identifiers": { "msisdn": "9998887776", "subnet": "103.45.12.0/24" },
+    "clusterId": null,
+    "riskScore": 20,
+    "riskTier": "Low",
+    "signals": [],
+    "evidenceRefs": [
+      { "exhibitId": "E03", "row": 7, "field": "public_ip", "excerpt": "103.45.12.91" }
+    ]
+  },
+  {
+    "id": "ENT-M5",
+    "type": "account",
+    "label": "M5 (Weak candidate — name similarity only)",
+    "identifiers": { "account": "ACC999001234", "name": "Rajesh K. (unrelated)" },
+    "clusterId": null,
+    "riskScore": 15,
+    "riskTier": "Low",
+    "signals": [],
+    "evidenceRefs": []
+  },
+  {
+    "id": "ENT-EMAIL",
+    "type": "email_origin",
+    "label": "Phish email origin",
+    "identifiers": { "from": "care@sbi-secure-alerts.in", "return_path": "phish-bounce@mailrelay.phishops.net", "spf": "fail" },
+    "clusterId": "CLUSTER-OPERATOR",
+    "riskScore": 75,
+    "riskTier": "Critical",
+    "signals": [
+      { "label": "Spoofed email header (SPF fail)", "score": 15, "detail": "From address and Return-Path differ; SPF = fail" }
+    ],
+    "evidenceRefs": [
+      { "exhibitId": "E07", "field": "From", "excerpt": "care@sbi-secure-alerts.in" }
+    ]
+  }
+]

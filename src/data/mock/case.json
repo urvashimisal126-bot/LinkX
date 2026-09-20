@@ -1,0 +1,9 @@
+{
+  "id": "LX-2026-0918-A",
+  "title": "APK-based UPI fraud with mule chain — 18 Sep 2026",
+  "complaintTime": "2026-09-18T15:09:00+05:30",
+  "caseClock": "2026-09-18T15:09:00+05:30",
+  "firstFraudulentDebitTime": "2026-09-18T14:31:40+05:30",
+  "amountAtStake": 485000,
+  "narrative": "On 18 Sep 2026 at 13:41 IST, victim received a phishing email purportedly from SBI, originating from IP 103.45.12.88 (SPF fail). A spoofed call from N1 (13:52) followed by an SMS from N2 (14:02) containing a malicious APK link prompted the victim to install the APK at 14:09. The APK exfiltrated credentials, enabling an unauthorised UPI debit of ₹4,85,000 from the victim's account at 14:31:40. Funds were immediately split: ₹2,40,000 to M2 and ₹2,45,000 to M3, then further routed through M4 to exchange E1. M3 withdrew ₹2,00,000 in two ATM transactions within 20 minutes."
+}

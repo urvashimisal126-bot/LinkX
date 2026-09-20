@@ -1,0 +1,178 @@
+[
+  {
+    "exhibitId": "E01",
+    "name": "cdr_telecom_a_victim.csv",
+    "sourceType": "cdr",
+    "provider": "Telecom A",
+    "size": 1847,
+    "recordedHash": "PLACEHOLDER_E01",
+    "computedHash": null,
+    "status": "pending",
+    "recordsParsed": 20,
+    "recordsRejected": 0,
+    "columns": [
+      { "evidenceId": "E01", "sourceColumn": "Calling_No",   "canonicalField": "party_a",   "confidence": 0.95, "method": "synonym", "sampleValue": "9876543210" },
+      { "evidenceId": "E01", "sourceColumn": "Called_No",    "canonicalField": "party_b",   "confidence": 0.95, "method": "synonym", "sampleValue": "9007198254" },
+      { "evidenceId": "E01", "sourceColumn": "Call_Start",   "canonicalField": "timestamp", "confidence": 0.95, "method": "synonym", "sampleValue": "18/09/2026 13:45:12" },
+      { "evidenceId": "E01", "sourceColumn": "Duration_Sec", "canonicalField": "duration",  "confidence": 0.95, "method": "synonym", "sampleValue": "312" },
+      { "evidenceId": "E01", "sourceColumn": "IMEI",         "canonicalField": "imei",      "confidence": 1.0,  "method": "exact",   "sampleValue": "866123045678901" },
+      { "evidenceId": "E01", "sourceColumn": "Cell_ID",      "canonicalField": "cell_id",   "confidence": 0.95, "method": "synonym", "sampleValue": "CELL_MH_0041" }
+    ]
+  },
+  {
+    "exhibitId": "E02",
+    "name": "cdr_telecom_b_suspects.xlsx",
+    "sourceType": "cdr",
+    "provider": "Telecom B",
+    "size": 12483,
+    "recordedHash": "PLACEHOLDER_E02",
+    "computedHash": null,
+    "status": "pending",
+    "recordsParsed": 30,
+    "recordsRejected": 2,
+    "columns": [
+      { "evidenceId": "E02", "sourceColumn": "MSISDN",      "canonicalField": "party_a",   "confidence": 0.95, "method": "synonym", "sampleValue": "9007198254" },
+      { "evidenceId": "E02", "sourceColumn": "B-Party",     "canonicalField": "party_b",   "confidence": 0.95, "method": "synonym", "sampleValue": "9876543210" },
+      { "evidenceId": "E02", "sourceColumn": "Start Time",  "canonicalField": "timestamp", "confidence": 0.95, "method": "synonym", "sampleValue": "2026-09-18T13:52:08+05:30" },
+      { "evidenceId": "E02", "sourceColumn": "Dur(s)",      "canonicalField": "duration",  "confidence": 0.95, "method": "synonym", "sampleValue": "187" },
+      { "evidenceId": "E02", "sourceColumn": "Device IMEI", "canonicalField": "imei",      "confidence": 0.95, "method": "synonym", "sampleValue": "866123045678901" },
+      { "evidenceId": "E02", "sourceColumn": "IMSI",        "canonicalField": "imsi",      "confidence": 1.0,  "method": "exact",   "sampleValue": "404101234567890" },
+      { "evidenceId": "E02", "sourceColumn": "Tower",       "canonicalField": "cell_id",   "confidence": 0.95, "method": "synonym", "sampleValue": "CELL_MH_0041" }
+    ]
+  },
+  {
+    "exhibitId": "E03",
+    "name": "ipdr_telecom_a.csv",
+    "sourceType": "ipdr",
+    "provider": "Telecom A",
+    "size": 2341,
+    "recordedHash": "PLACEHOLDER_E03",
+    "computedHash": null,
+    "status": "pending",
+    "recordsParsed": 15,
+    "recordsRejected": 0,
+    "columns": [
+      { "evidenceId": "E03", "sourceColumn": "msisdn",        "canonicalField": "msisdn",       "confidence": 1.0,  "method": "exact",   "sampleValue": "9007198254" },
+      { "evidenceId": "E03", "sourceColumn": "private_ip",    "canonicalField": "private_ip",   "confidence": 1.0,  "method": "exact",   "sampleValue": "10.18.4.22" },
+      { "evidenceId": "E03", "sourceColumn": "public_ip",     "canonicalField": "public_ip",    "confidence": 1.0,  "method": "exact",   "sampleValue": "103.45.12.88" },
+      { "evidenceId": "E03", "sourceColumn": "session_start", "canonicalField": "timestamp",    "confidence": 0.95, "method": "synonym", "sampleValue": "2026-09-18T13:38:00+05:30" },
+      { "evidenceId": "E03", "sourceColumn": "dest_ip",       "canonicalField": "destination_ip","confidence": 0.95, "method": "synonym", "sampleValue": "142.251.42.100" },
+      { "evidenceId": "E03", "sourceColumn": "bytes",         "canonicalField": "bytes",        "confidence": 1.0,  "method": "exact",   "sampleValue": "820400" }
+    ]
+  },
+  {
+    "exhibitId": "E04",
+    "name": "bank_x_ledger_m1.csv",
+    "sourceType": "bank",
+    "provider": "Bank X",
+    "size": 892,
+    "recordedHash": "PLACEHOLDER_E04",
+    "computedHash": null,
+    "status": "pending",
+    "recordsParsed": 9,
+    "recordsRejected": 0,
+    "columns": [
+      { "evidenceId": "E04", "sourceColumn": "Txn Date",   "canonicalField": "timestamp",  "confidence": 0.82, "method": "fuzzy",   "sampleValue": "18/09/2026" },
+      { "evidenceId": "E04", "sourceColumn": "Value Time", "canonicalField": "timestamp",  "confidence": 0.85, "method": "synonym", "sampleValue": "14:31:40" },
+      { "evidenceId": "E04", "sourceColumn": "Debit",      "canonicalField": "amount",     "confidence": 0.95, "method": "synonym", "sampleValue": "240000" },
+      { "evidenceId": "E04", "sourceColumn": "Credit",     "canonicalField": "amount",     "confidence": 0.95, "method": "synonym", "sampleValue": "485000" },
+      { "evidenceId": "E04", "sourceColumn": "Narration",  "canonicalField": "narration",  "confidence": 1.0,  "method": "exact",   "sampleValue": "UPI/CR/9007198254@oksbi/REFUND-KYC" },
+      { "evidenceId": "E04", "sourceColumn": "UTR",        "canonicalField": "utr_rrn",    "confidence": 1.0,  "method": "exact",   "sampleValue": "UPI26918123456001" },
+      { "evidenceId": "E04", "sourceColumn": "Balance",    "canonicalField": "balance",    "confidence": 1.0,  "method": "exact",   "sampleValue": "485000" }
+    ]
+  },
+  {
+    "exhibitId": "E05",
+    "name": "bank_z_ledger_m3.csv",
+    "sourceType": "bank",
+    "provider": "Bank Z",
+    "size": 731,
+    "recordedHash": "PLACEHOLDER_E05",
+    "computedHash": null,
+    "status": "pending",
+    "recordsParsed": 12,
+    "recordsRejected": 0,
+    "columns": [
+      { "evidenceId": "E05", "sourceColumn": "Date",        "canonicalField": "timestamp",  "confidence": 0.75, "method": "fuzzy",   "sampleValue": "18-09-2026" },
+      { "evidenceId": "E05", "sourceColumn": "Time",        "canonicalField": "timestamp",  "confidence": 0.75, "method": "fuzzy",   "sampleValue": "14:32:18" },
+      { "evidenceId": "E05", "sourceColumn": "Withdrawal",  "canonicalField": "amount",     "confidence": 0.72, "method": "fuzzy",   "sampleValue": "100000" },
+      { "evidenceId": "E05", "sourceColumn": "Deposit",     "canonicalField": "amount",     "confidence": 0.72, "method": "fuzzy",   "sampleValue": "245000" },
+      { "evidenceId": "E05", "sourceColumn": "Particulars", "canonicalField": "narration",  "confidence": 0.65, "method": "fuzzy",   "sampleValue": "UPI-CR-M1-FORWARD" },
+      { "evidenceId": "E05", "sourceColumn": "Reference",   "canonicalField": "utr_rrn",    "confidence": 0.78, "method": "synonym", "sampleValue": "UPI26918123456003" },
+      { "evidenceId": "E05", "sourceColumn": "Closing_Bal", "canonicalField": "balance",    "confidence": 0.70, "method": "fuzzy",   "sampleValue": "245000" }
+    ]
+  },
+  {
+    "exhibitId": "E06",
+    "name": "upi_settlement_bank_y.xlsx",
+    "sourceType": "upi",
+    "provider": "Bank Y / NPCI",
+    "size": 9812,
+    "recordedHash": "PLACEHOLDER_E06",
+    "computedHash": null,
+    "status": "pending",
+    "recordsParsed": 25,
+    "recordsRejected": 1,
+    "columns": [
+      { "evidenceId": "E06", "sourceColumn": "txn_ts",     "canonicalField": "timestamp",       "confidence": 0.88, "method": "synonym", "sampleValue": "2026-09-18T14:31:40+05:30" },
+      { "evidenceId": "E06", "sourceColumn": "payer_vpa",  "canonicalField": "payer_vpa",       "confidence": 1.0,  "method": "exact",   "sampleValue": "victim@okaxis" },
+      { "evidenceId": "E06", "sourceColumn": "payee_vpa",  "canonicalField": "payee_vpa",       "confidence": 1.0,  "method": "exact",   "sampleValue": "9007198254@oksbi" },
+      { "evidenceId": "E06", "sourceColumn": "amt_inr",    "canonicalField": "amount",          "confidence": 0.95, "method": "synonym", "sampleValue": "485000" },
+      { "evidenceId": "E06", "sourceColumn": "rrn",        "canonicalField": "utr_rrn",         "confidence": 1.0,  "method": "exact",   "sampleValue": "UPI26918123456001" },
+      { "evidenceId": "E06", "sourceColumn": "status",     "canonicalField": "status",          "confidence": 1.0,  "method": "exact",   "sampleValue": "SUCCESS" },
+      { "evidenceId": "E06", "sourceColumn": "device_ip",  "canonicalField": "public_ip",       "confidence": 0.82, "method": "fuzzy",   "sampleValue": "103.45.12.88" },
+      { "evidenceId": "E06", "sourceColumn": "reg_mobile", "canonicalField": "registered_mobile","confidence": 0.95, "method": "synonym", "sampleValue": "9007198254" }
+    ]
+  },
+  {
+    "exhibitId": "E07",
+    "name": "phish_email_header.eml",
+    "sourceType": "email",
+    "provider": "Victim email server",
+    "size": 1124,
+    "recordedHash": "PLACEHOLDER_E07",
+    "computedHash": null,
+    "status": "pending",
+    "recordsParsed": 1,
+    "recordsRejected": 0,
+    "columns": [
+      { "evidenceId": "E07", "sourceColumn": "From",             "canonicalField": "email_from",   "confidence": 1.0, "method": "exact",   "sampleValue": "care@sbi-secure-alerts.in" },
+      { "evidenceId": "E07", "sourceColumn": "Return-Path",      "canonicalField": "return_path",  "confidence": 1.0, "method": "exact",   "sampleValue": "phish-bounce@mailrelay.phishops.net" },
+      { "evidenceId": "E07", "sourceColumn": "X-Originating-IP", "canonicalField": "received_ip",  "confidence": 0.88, "method": "synonym", "sampleValue": "103.45.12.88" },
+      { "evidenceId": "E07", "sourceColumn": "spf",              "canonicalField": "spf_result",   "confidence": 0.90, "method": "synonym", "sampleValue": "fail" }
+    ]
+  },
+  {
+    "exhibitId": "E08",
+    "name": "android_dump_victim.json",
+    "sourceType": "android",
+    "provider": "UFED 7.4 / Victim device",
+    "size": 2891,
+    "recordedHash": "PLACEHOLDER_E08",
+    "computedHash": null,
+    "status": "pending",
+    "recordsParsed": 3,
+    "recordsRejected": 0,
+    "columns": [
+      { "evidenceId": "E08", "sourceColumn": "install_time",  "canonicalField": "install_time",  "confidence": 1.0,  "method": "exact",   "sampleValue": "2026-09-18T14:09:22+05:30" },
+      { "evidenceId": "E08", "sourceColumn": "package_name",  "canonicalField": "package_name",  "confidence": 1.0,  "method": "exact",   "sampleValue": "com.sbi.secureverify" },
+      { "evidenceId": "E08", "sourceColumn": "permissions",   "canonicalField": "permission",    "confidence": 0.90, "method": "synonym", "sampleValue": "android.permission.READ_SMS" }
+    ]
+  },
+  {
+    "exhibitId": "E09",
+    "name": "apk_metadata.json",
+    "sourceType": "apk",
+    "provider": "Static analysis (apktool + jadx)",
+    "size": 1876,
+    "recordedHash": "PLACEHOLDER_E09",
+    "computedHash": null,
+    "status": "pending",
+    "recordsParsed": 1,
+    "recordsRejected": 0,
+    "columns": [
+      { "evidenceId": "E09", "sourceColumn": "package_name",  "canonicalField": "package_name",  "confidence": 1.0, "method": "exact",   "sampleValue": "com.sbi.secureverify" },
+      { "evidenceId": "E09", "sourceColumn": "sha256",        "canonicalField": "utr_rrn",       "confidence": 0.30, "method": "fuzzy",   "sampleValue": "a1b2c3d4..." }
+    ]
+  }
+]

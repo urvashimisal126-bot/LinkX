@@ -1,0 +1,26 @@
+Received: from mail.phishops.net (103.45.12.88) by victim-mail.example.com
+  with ESMTP id abc123; Thu, 18 Sep 2026 13:41:00 +0530
+From: "SBI Customer Care" <care@sbi-secure-alerts.in>
+To: victim@example.com
+Subject: Urgent: Your SBI account KYC verification required
+Date: Thu, 18 Sep 2026 13:41:00 +0530
+Message-ID: <phish20260918134100@sbi-secure-alerts.in>
+Return-Path: <phish-bounce@mailrelay.phishops.net>
+X-Originating-IP: 103.45.12.88
+X-Mailer: PhishKit v2.3
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Authentication-Results: victim-mail.example.com;
+  spf=fail (domain of sbi-secure-alerts.in does not designate 103.45.12.88 as permitted sender)
+  smtp.mailfrom=care@sbi-secure-alerts.in;
+  dkim=none
+
+Dear Customer,
+
+Your SBI account requires immediate KYC verification to avoid suspension.
+Please click the link below and provide your details:
+
+http://sbi-kyc-verify.phishops.net/secure?ref=LX0918
+
+Regards,
+SBI Security Team

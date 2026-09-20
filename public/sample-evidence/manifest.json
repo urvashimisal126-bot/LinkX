@@ -1,0 +1,12 @@
+{
+  "generated": "2026-09-19T18:42:28.180Z",
+  "files": {
+    "android_dump_victim.json": "0e9958c28d1cfa82af205a1905db0350ea48273c6ef2e2bea660a396374e80b8",
+    "apk_metadata.json": "62c5653d649d45e22f2f9826261edbb26076977cb6829d0807d3f82c2b7dff6e",
+    "bank_x_ledger_m1.csv": "3c493daf0ccece2aaebf161c1b92a6e23e073c27a76fdd16ba826d5767e9ab5f",
+    "bank_z_ledger_m3.csv": "66025b6f1de53316685055d9dbc9cee180b035bb5c1dc44dc99d78e84a4df5d1",
+    "cdr_telecom_a_victim.csv": "243d7d37cd4625bf3c2f8644569df8ce178b60aa5ea7bdaaa4c5086c042f11f2",
+    "ipdr_telecom_a.csv": "d972c5b552d368f6632eea61010a1024614196def428fae935cc4bf3fac6b741",
+    "phish_email_header.eml": "526b3f47d7d5d6e074fb510772fb0fbff62d04d993ba76e79822ea7bf7edce0a"
+  }
+}

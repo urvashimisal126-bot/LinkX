@@ -1,0 +1,88 @@
+[
+  {
+    "id": "FLOW-V-M1",
+    "from": "ENT-VICTIM",
+    "to": "ENT-M1",
+    "kind": "money",
+    "amount": 485000,
+    "time": "2026-09-18T14:31:40+05:30",
+    "reference": "UPI26918123456001",
+    "evidenceRefs": [{ "exhibitId": "E04", "row": 1, "field": "Credit", "excerpt": "485000" }]
+  },
+  {
+    "id": "FLOW-M1-M2",
+    "from": "ENT-M1",
+    "to": "ENT-M2",
+    "kind": "money",
+    "amount": 240000,
+    "time": "2026-09-18T14:32:05+05:30",
+    "reference": "UPI26918123456002",
+    "evidenceRefs": [{ "exhibitId": "E04", "row": 2, "field": "Debit", "excerpt": "240000" }]
+  },
+  {
+    "id": "FLOW-M1-M3",
+    "from": "ENT-M1",
+    "to": "ENT-M3",
+    "kind": "money",
+    "amount": 245000,
+    "time": "2026-09-18T14:32:18+05:30",
+    "reference": "UPI26918123456003",
+    "evidenceRefs": [{ "exhibitId": "E04", "row": 3, "field": "Debit", "excerpt": "245000" }]
+  },
+  {
+    "id": "FLOW-M2-M4",
+    "from": "ENT-M2",
+    "to": "ENT-M4",
+    "kind": "money",
+    "amount": 235000,
+    "time": "2026-09-18T14:38:00+05:30",
+    "reference": "UPI26918200001",
+    "evidenceRefs": [{ "exhibitId": "E06", "row": 3, "field": "amt_inr", "excerpt": "235000" }]
+  },
+  {
+    "id": "FLOW-M4-E1",
+    "from": "ENT-M4",
+    "to": "ENT-E1",
+    "kind": "money",
+    "amount": 230000,
+    "time": "2026-09-18T14:52:00+05:30",
+    "reference": "UPI26918300001",
+    "evidenceRefs": [{ "exhibitId": "E06", "row": 4, "field": "amt_inr", "excerpt": "230000" }]
+  },
+  {
+    "id": "FLOW-N1-V",
+    "from": "ENT-N1",
+    "to": "ENT-VICTIM",
+    "kind": "call",
+    "time": "2026-09-18T13:52:08+05:30",
+    "reference": "CDR-ROW-2",
+    "evidenceRefs": [{ "exhibitId": "E01", "row": 2, "field": "Calling_No", "excerpt": "9007198254 → 9876543210" }]
+  },
+  {
+    "id": "FLOW-N2-V-SMS",
+    "from": "ENT-N2",
+    "to": "ENT-VICTIM",
+    "kind": "sms",
+    "time": "2026-09-18T14:02:15+05:30",
+    "reference": "SMS-APK-LINK",
+    "evidenceRefs": [{ "exhibitId": "E07", "field": "sms_log[0]", "excerpt": "APK link SMS" }]
+  },
+  {
+    "id": "FLOW-EMAIL-V",
+    "from": "ENT-EMAIL",
+    "to": "ENT-VICTIM",
+    "kind": "session",
+    "time": "2026-09-18T13:41:00+05:30",
+    "reference": "phish-email-LX0918",
+    "evidenceRefs": [{ "exhibitId": "E07", "field": "Subject", "excerpt": "Urgent: Your SBI account KYC verification required" }]
+  },
+  {
+    "id": "FLOW-IP1-EMAIL",
+    "from": "ENT-IP1",
+    "to": "ENT-EMAIL",
+    "kind": "session",
+    "time": "2026-09-18T13:41:00+05:30",
+    "reference": "X-Originating-IP",
+    "evidenceRefs": [{ "exhibitId": "E07", "field": "X-Originating-IP", "excerpt": "103.45.12.88" }]
+  }
+]

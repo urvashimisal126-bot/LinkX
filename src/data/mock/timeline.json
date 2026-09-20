@@ -1,0 +1,135 @@
+[
+  {
+    "id": "TL-01",
+    "time": "2026-09-18T13:41:00+05:30",
+    "source": "email",
+    "entityIds": ["ENT-EMAIL", "ENT-IP1", "ENT-VICTIM"],
+    "title": "Phishing email received by victim",
+    "detail": "Spoofed SBI email from 103.45.12.88 sent to victim. From: care@sbi-secure-alerts.in, Return-Path mismatch, SPF fail. Subject: 'Urgent: Your SBI account KYC verification required'.",
+    "isKeyMoment": true,
+    "evidenceRefs": [{ "exhibitId": "E07", "field": "Date", "excerpt": "Thu, 18 Sep 2026 13:41:00 +0530" }]
+  },
+  {
+    "id": "TL-02",
+    "time": "2026-09-18T13:45:12+05:30",
+    "source": "cdr",
+    "entityIds": ["ENT-N1", "ENT-VICTIM"],
+    "title": "Preliminary call from N1 to victim",
+    "detail": "9007198254 (N1) called 9876543210 (victim) for 312 seconds. Likely social engineering prior to main spoofed call.",
+    "isKeyMoment": false,
+    "evidenceRefs": [{ "exhibitId": "E01", "row": 1, "field": "Calling_No", "excerpt": "9007198254 → 9876543210, 312s" }]
+  },
+  {
+    "id": "TL-03",
+    "time": "2026-09-18T13:52:08+05:30",
+    "source": "cdr",
+    "entityIds": ["ENT-N1", "ENT-VICTIM"],
+    "title": "Spoofed call from N1 to victim (key deception event)",
+    "detail": "Spoofed inbound call from 9007198254 to victim 9876543210, 187 seconds. N1 IMEI-1 active on Cell CELL_MH_0041. Caller presented as SBI KYC officer.",
+    "isKeyMoment": true,
+    "evidenceRefs": [{ "exhibitId": "E01", "row": 2, "field": "Call_Start", "excerpt": "18/09/2026 13:52:08" }]
+  },
+  {
+    "id": "TL-04",
+    "time": "2026-09-18T14:01:33+05:30",
+    "source": "cdr",
+    "entityIds": ["ENT-N1"],
+    "title": "N1 calls toll-free number (reconnaissance)",
+    "detail": "9007198254 called 1800110001 for 45 seconds — likely testing or verifying the SBI helpline number to use in the spoofing script.",
+    "isKeyMoment": false,
+    "evidenceRefs": [{ "exhibitId": "E01", "row": 3, "field": "Called_No", "excerpt": "1800110001" }]
+  },
+  {
+    "id": "TL-05",
+    "time": "2026-09-18T14:02:15+05:30",
+    "source": "android",
+    "entityIds": ["ENT-N2", "ENT-VICTIM"],
+    "title": "SMS with APK link sent by N2 to victim",
+    "detail": "SMS from 9999000002 (N2, same handset IMEI-1) containing link: http://sbi-kyc-verify.phishops.net/secure?ref=LX0918. Victim's Android dump confirms receipt.",
+    "isKeyMoment": true,
+    "evidenceRefs": [{ "exhibitId": "E07", "field": "sms_log[0]", "excerpt": "Click here to complete SBI KYC: http://sbi-kyc-verify.phishops.net..." }]
+  },
+  {
+    "id": "TL-06",
+    "time": "2026-09-18T14:09:22+05:30",
+    "source": "android",
+    "entityIds": ["ENT-VICTIM", "ENT-IP1"],
+    "title": "Malicious APK installed by victim",
+    "detail": "com.sbi.secureverify installed at 14:09:22 IST via browser (sideloaded). APK connects to 103.45.12.88. Permissions include READ_SMS, SEND_SMS, READ_CALL_LOG — enables OTP interception.",
+    "isKeyMoment": true,
+    "evidenceRefs": [{ "exhibitId": "E08", "field": "install_time", "excerpt": "2026-09-18T14:09:22+05:30" }]
+  },
+  {
+    "id": "TL-07",
+    "time": "2026-09-18T14:31:40+05:30",
+    "source": "bank",
+    "entityIds": ["ENT-VICTIM", "ENT-M1"],
+    "title": "First fraudulent debit — ₹4,85,000 from victim to M1",
+    "detail": "UPI debit of ₹4,85,000 from victim A/C XX4321 to M1 (9007198254@oksbi). UTR: UPI26918123456001. Case clock reference T+0.",
+    "isKeyMoment": true,
+    "evidenceRefs": [{ "exhibitId": "E04", "row": 1, "field": "UTR", "excerpt": "UPI26918123456001" }]
+  },
+  {
+    "id": "TL-08",
+    "time": "2026-09-18T14:32:05+05:30",
+    "source": "bank",
+    "entityIds": ["ENT-M1", "ENT-M2"],
+    "title": "M1 splits funds — ₹2,40,000 to M2",
+    "detail": "M1 forwards ₹2,40,000 to M2 (ACC987654321) within 25 seconds of receipt. UTR: UPI26918123456002. Multi-hop routing signal triggered.",
+    "isKeyMoment": true,
+    "evidenceRefs": [{ "exhibitId": "E04", "row": 2, "field": "UTR", "excerpt": "UPI26918123456002" }]
+  },
+  {
+    "id": "TL-09",
+    "time": "2026-09-18T14:32:18+05:30",
+    "source": "bank",
+    "entityIds": ["ENT-M1", "ENT-M3"],
+    "title": "M1 splits funds — ₹2,45,000 to M3",
+    "detail": "M1 forwards ₹2,45,000 to M3 (ACC112233445) within 38 seconds of receipt. UTR: UPI26918123456003. Balance in M1 drops to ₹0.",
+    "isKeyMoment": true,
+    "evidenceRefs": [{ "exhibitId": "E04", "row": 3, "field": "UTR", "excerpt": "UPI26918123456003" }]
+  },
+  {
+    "id": "TL-10",
+    "time": "2026-09-18T14:38:00+05:30",
+    "source": "upi",
+    "entityIds": ["ENT-M2", "ENT-M4"],
+    "title": "M2 forwards ₹2,35,000 to M4",
+    "detail": "M2 forwards ₹2,35,000 to M4 (suspect@ybl). UPI settlement record shows reg_mobile 9007198254 on M4 — matches N2's MSISDN.",
+    "isKeyMoment": false,
+    "evidenceRefs": [{ "exhibitId": "E06", "row": 3, "field": "rrn", "excerpt": "RRN26918200001" }]
+  },
+  {
+    "id": "TL-11",
+    "time": "2026-09-18T14:45:00+05:30",
+    "source": "bank",
+    "entityIds": ["ENT-M3"],
+    "title": "M3 ATM withdrawal — ₹1,00,000 (first)",
+    "detail": "ATM withdrawal of ₹1,00,000 from M3 (ACC112233445) at Pune FC Road ATM. Ref: ATM26918100001. Balance drops to ₹1,45,000.",
+    "isKeyMoment": true,
+    "evidenceRefs": [{ "exhibitId": "E05", "row": 2, "field": "Reference", "excerpt": "ATM26918100001" }]
+  },
+  {
+    "id": "TL-12",
+    "time": "2026-09-18T14:52:00+05:30",
+    "source": "bank",
+    "entityIds": ["ENT-M3", "ENT-M4", "ENT-E1"],
+    "title": "M3 ATM withdrawal ₹1,00,000 + M4 sends ₹2,30,000 to E1 exchange",
+    "detail": "M3: second ATM withdrawal ₹1,00,000 (Ref: ATM26918100002), balance ~₹45,000. Simultaneously M4 transfers ₹2,30,000 to CryptoXchange (cryptoxchange@upi). Exchange deposit confirmed.",
+    "isKeyMoment": true,
+    "evidenceRefs": [
+      { "exhibitId": "E05", "row": 3, "field": "Reference", "excerpt": "ATM26918100002" },
+      { "exhibitId": "E06", "row": 4, "field": "rrn", "excerpt": "RRN26918300001" }
+    ]
+  },
+  {
+    "id": "TL-13",
+    "time": "2026-09-18T15:09:00+05:30",
+    "source": "bank",
+    "entityIds": ["ENT-VICTIM"],
+    "title": "Victim lodges complaint — case clock",
+    "detail": "Victim contacts SBI helpline and files cybercrime complaint. Case LX-2026-0918-A created. Case clock set to 15:09:00 IST. 37 minutes elapsed since first fraudulent debit.",
+    "isKeyMoment": true,
+    "evidenceRefs": []
+  }
+]

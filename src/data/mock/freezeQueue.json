@@ -1,0 +1,166 @@
+[
+  {
+    "entityId": "ENT-M3",
+    "action": "account_freeze",
+    "score": 88,
+    "tier": "Freeze now",
+    "estimatedRemaining": 45000,
+    "lastOutflowTime": "2026-09-18T14:52:00+05:30",
+    "factors": [
+      { "name": "Recoverability", "weight": 35, "value": 35, "description": "~₹45,000 still estimated in account (ATM not yet cleared bank ledger)" },
+      { "name": "Time-criticality", "weight": 25, "value": 25, "description": "ATM withdrawal activity within last 15 minutes of case clock" },
+      { "name": "Chain position", "weight": 20, "value": 16, "description": "Direct mule — received funds from M1 and began cash-out via ATM" },
+      { "name": "Link confidence", "weight": 10, "value": 8, "description": "Moderate×2 links — merged cluster, but not single-identifier confirmed" },
+      { "name": "Activity", "weight": 10, "value": 4, "description": "2 ATM transactions in 7 minutes (velocity = 0.4)" }
+    ],
+    "reasons": [
+      "~₹45,000 estimated still in account — highest recoverability",
+      "ATM withdrawals ongoing at case clock — immediate risk of total loss",
+      "Merged into operator cluster via two independent Moderate links"
+    ],
+    "status": "pending"
+  },
+  {
+    "entityId": "ENT-E1",
+    "action": "exchange_hold",
+    "score": 84,
+    "tier": "Freeze now",
+    "estimatedRemaining": 230000,
+    "lastOutflowTime": "2026-09-18T14:52:00+05:30",
+    "factors": [
+      { "name": "Recoverability", "weight": 35, "value": 32, "description": "~₹2,30,000 deposited — exchange holds are reversible if requested before settlement" },
+      { "name": "Time-criticality", "weight": 25, "value": 22, "description": "Exchange deposit within 20 minutes of case clock" },
+      { "name": "Chain position", "weight": 20, "value": 20, "description": "Terminal cash-out node — all upstream funds converge here" },
+      { "name": "Link confidence", "weight": 10, "value": 7, "description": "Strong link from M4 to N2 connects to this node" },
+      { "name": "Activity", "weight": 10, "value": 3, "description": "Single large deposit (velocity low, risk is recoverability)" }
+    ],
+    "reasons": [
+      "~₹2,30,000 exchange deposit — largest recoverable amount",
+      "Terminal cash-out: once converted to crypto, funds are unrecoverable",
+      "Exchange hold request is reversible — lowest risk action"
+    ],
+    "status": "pending"
+  },
+  {
+    "entityId": "ENT-M4",
+    "action": "account_freeze",
+    "score": 67,
+    "tier": "Freeze today",
+    "estimatedRemaining": 235000,
+    "lastOutflowTime": "2026-09-18T14:52:00+05:30",
+    "factors": [
+      { "name": "Recoverability", "weight": 35, "value": 21, "description": "~₹2,35,000 transited — most forwarded but freeze stops further outflow" },
+      { "name": "Time-criticality", "weight": 25, "value": 18, "description": "Last outflow 17 minutes before case clock" },
+      { "name": "Chain position", "weight": 20, "value": 14, "description": "Penultimate node before cash-out — hub connecting M2 to E1" },
+      { "name": "Link confidence", "weight": 10, "value": 9, "description": "Strong link (registered mobile) to N2 — high confidence" },
+      { "name": "Activity", "weight": 10, "value": 5, "description": "2 transactions in 14 minutes" }
+    ],
+    "reasons": [
+      "Strong identity link to N2 via registered mobile — high confidence",
+      "Penultimate node before exchange cash-out",
+      "Freeze stops potential second withdrawal attempt"
+    ],
+    "status": "pending"
+  },
+  {
+    "entityId": "ENT-M1",
+    "action": "account_freeze",
+    "score": 55,
+    "tier": "Freeze today",
+    "estimatedRemaining": 0,
+    "lastOutflowTime": "2026-09-18T14:32:18+05:30",
+    "factors": [
+      { "name": "Recoverability", "weight": 35, "value": 0, "description": "Balance ₹0 — funds fully forwarded" },
+      { "name": "Time-criticality", "weight": 25, "value": 15, "description": "Last outflow 37 minutes before case clock" },
+      { "name": "Chain position", "weight": 20, "value": 18, "description": "Entry point — received victim's full amount and split it" },
+      { "name": "Link confidence", "weight": 10, "value": 10, "description": "Direct UPI to victim's account — highest possible confidence" },
+      { "name": "Activity", "weight": 10, "value": 12, "description": "3 transactions in 38 seconds — extreme velocity" }
+    ],
+    "reasons": [
+      "Primary entry point receiving victim funds — critical for legal trail",
+      "Account freeze preserves transaction records and blocks reactivation",
+      "Freeze supports further investigation of UPI VPA 9007198254@oksbi"
+    ],
+    "status": "pending"
+  },
+  {
+    "entityId": "ENT-N1",
+    "action": "sim_block",
+    "score": 52,
+    "tier": "Freeze today",
+    "estimatedRemaining": null,
+    "lastOutflowTime": null,
+    "factors": [
+      { "name": "Recoverability", "weight": 35, "value": 0, "description": "N/A — SIM block prevents future fraud, not financial recovery" },
+      { "name": "Time-criticality", "weight": 25, "value": 20, "description": "IMEI-1 still potentially active — 4 SIM switches indicate ongoing operation" },
+      { "name": "Chain position", "weight": 20, "value": 14, "description": "Operator role — coordinated call and SMS fraud" },
+      { "name": "Link confidence", "weight": 10, "value": 9, "description": "Strong IMEI link to N2 (same handset)" },
+      { "name": "Activity", "weight": 10, "value": 8, "description": "Active at case clock based on CDR timing" }
+    ],
+    "reasons": [
+      "SIM block and IMEI block prevent re-use for further fraud",
+      "4 SIM switches on IMEI-1 in 7 days — active criminal operation",
+      "Spoofed caller ID — ongoing risk to other victims"
+    ],
+    "status": "pending"
+  },
+  {
+    "entityId": "ENT-M2",
+    "action": "account_freeze",
+    "score": 48,
+    "tier": "Freeze today",
+    "estimatedRemaining": 5000,
+    "lastOutflowTime": "2026-09-18T14:38:00+05:30",
+    "factors": [
+      { "name": "Recoverability", "weight": 35, "value": 7, "description": "~₹5,000 estimated remaining after forwarding ₹2,35,000 to M4" },
+      { "name": "Time-criticality", "weight": 25, "value": 15, "description": "Last outflow 31 minutes before case clock" },
+      { "name": "Chain position", "weight": 20, "value": 12, "description": "Intermediate mule — received from M1, forwarded to M4" },
+      { "name": "Link confidence", "weight": 10, "value": 7, "description": "No identity link — connected by money flow only" },
+      { "name": "Activity", "weight": 10, "value": 7, "description": "2 transactions in 6 minutes" }
+    ],
+    "reasons": [
+      "Intermediate node: freeze for evidentiary chain",
+      "No identity link confirmed — account details for further enquiry",
+      "Low balance but freeze prevents account closure by suspect"
+    ],
+    "status": "pending"
+  },
+  {
+    "entityId": "ENT-N3",
+    "action": "sim_block",
+    "score": 22,
+    "tier": "Monitor",
+    "estimatedRemaining": null,
+    "lastOutflowTime": null,
+    "factors": [
+      { "name": "Recoverability", "weight": 35, "value": 0, "description": "N/A" },
+      { "name": "Time-criticality", "weight": 25, "value": 5, "description": "No recent activity in the fraud window" },
+      { "name": "Chain position", "weight": 20, "value": 0, "description": "Not in money trail" },
+      { "name": "Link confidence", "weight": 10, "value": 3, "description": "Weak link (subnet only) — not merged" },
+      { "name": "Activity", "weight": 10, "value": 14, "description": "Active CDR activity but unrelated to fraud" }
+    ],
+    "reasons": ["Weak evidence: subnet overlap only — insufficient for action"],
+    "status": "pending",
+    "notRecommended": true,
+    "notRecommendedReason": "Not merged: weak evidence only (same /24 subnet — insufficient to establish identity)"
+  },
+  {
+    "entityId": "ENT-M5",
+    "action": "account_freeze",
+    "score": 12,
+    "tier": "Monitor",
+    "estimatedRemaining": null,
+    "lastOutflowTime": null,
+    "factors": [
+      { "name": "Recoverability", "weight": 35, "value": 0, "description": "N/A" },
+      { "name": "Time-criticality", "weight": 25, "value": 0, "description": "No activity in fraud window" },
+      { "name": "Chain position", "weight": 20, "value": 0, "description": "Not in money trail" },
+      { "name": "Link confidence", "weight": 10, "value": 2, "description": "Weak link (name similarity only) — not merged" },
+      { "name": "Activity", "weight": 10, "value": 10, "description": "Normal transaction activity" }
+    ],
+    "reasons": ["Weak evidence: name similarity only — insufficient for action"],
+    "status": "pending",
+    "notRecommended": true,
+    "notRecommendedReason": "Not merged: weak evidence only (name similarity 82% — may be coincidence, no corroboration)"
+  }
+]

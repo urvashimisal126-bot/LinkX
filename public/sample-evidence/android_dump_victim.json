@@ -1,0 +1,88 @@
+{
+  "dump_meta": {
+    "device": "Samsung Galaxy A22",
+    "android_version": "12",
+    "dump_time": "2026-09-18T15:45:00+05:30",
+    "extracted_by": "UFED 7.4",
+    "case_ref": "LX-2026-0918-A"
+  },
+  "installed_apps": [
+    {
+      "package_name": "com.sbi.secureverify",
+      "label": "SBI KYC Verify",
+      "version": "1.0.0",
+      "install_time": "2026-09-18T14:09:22+05:30",
+      "installer": "com.android.browser",
+      "permissions": [
+        "android.permission.READ_SMS",
+        "android.permission.SEND_SMS",
+        "android.permission.READ_CONTACTS",
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.READ_CALL_LOG",
+        "android.permission.RECEIVE_SMS",
+        "android.permission.INTERNET",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ],
+      "apk_hash_sha256": "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2",
+      "is_system_app": false,
+      "is_sideloaded": true
+    },
+    {
+      "package_name": "com.google.android.gms",
+      "label": "Google Play Services",
+      "version": "23.10.15",
+      "install_time": "2025-01-10T08:00:00+05:30",
+      "permissions": ["android.permission.INTERNET"],
+      "is_system_app": true,
+      "is_sideloaded": false
+    },
+    {
+      "package_name": "in.gov.npci.upiapp",
+      "label": "BHIM UPI",
+      "version": "3.1.0",
+      "install_time": "2025-03-15T10:30:00+05:30",
+      "permissions": ["android.permission.INTERNET", "android.permission.READ_CONTACTS"],
+      "is_system_app": false,
+      "is_sideloaded": false
+    }
+  ],
+  "sms_log": [
+    {
+      "from": "9999000002",
+      "body": "Click here to complete SBI KYC: http://sbi-kyc-verify.phishops.net/secure?ref=LX0918 - SBI Security",
+      "time": "2026-09-18T14:02:15+05:30",
+      "direction": "incoming"
+    },
+    {
+      "from": "SBIINB",
+      "body": "INB: Rs.4,85,000.00 debited from A/C XX4321 on 18-09-26. If not done by you call 1800110001. Ref: UPI26918123456001",
+      "time": "2026-09-18T14:31:45+05:30",
+      "direction": "incoming"
+    },
+    {
+      "from": "9007198254",
+      "body": "Sir please don't worry your account is safe. Our officer will call you shortly.",
+      "time": "2026-09-18T14:35:00+05:30",
+      "direction": "incoming"
+    }
+  ],
+  "network_connections": [
+    {
+      "remote_ip": "103.45.12.88",
+      "remote_port": 443,
+      "process": "com.sbi.secureverify",
+      "time": "2026-09-18T14:09:30+05:30",
+      "bytes_sent": 45200,
+      "bytes_recv": 12100
+    },
+    {
+      "remote_ip": "185.199.108.133",
+      "remote_port": 443,
+      "process": "com.android.browser",
+      "time": "2026-09-18T14:02:05+05:30",
+      "bytes_sent": 1200,
+      "bytes_recv": 3402000
+    }
+  ]
+}
