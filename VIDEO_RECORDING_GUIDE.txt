@@ -1,0 +1,94 @@
+LINKX — FRIENDLY VIDEO RECORDING GUIDE
+=======================================
+
+Goal: record a confident 2-minute demo. You only need a browser, the app, and
+this guide. Do not explain code. Explain the officer’s next action.
+
+BEFORE YOU RECORD
+-----------------
+1. Open a terminal in the LinkX folder and run: npm run dev
+2. Open the local URL Vite prints (normally http://localhost:5173/).
+3. Keep the browser window at 100% zoom and use a desktop-width window.
+4. Start at the landing page. If you were already in the workspace, type the
+   local URL without #/ and refresh.
+5. Keep this guide nearby. You will click “Load sample case” only once.
+6. Make sure browser notifications and unrelated tabs are hidden.
+
+SHORT SCRIPT AND WHAT TO SHOW
+-----------------------------
+
+0:00–0:12 | LANDING PAGE
+Show: the headline, the three statistics, and the Enter workspace button.
+Say: “LinkX is an offline investigation workspace for cyber-fraud cases. It
+turns a complaint into a clear freeze priority during the Golden Hour.”
+Click: Enter workspace.
+
+0:12–0:20 | OVERVIEW + LOAD DATA
+Show: the empty overview first, then the Load sample case button.
+Say: “An officer can load a complete case locally. For this demo, one click
+loads all six evidence sources and their connected case data.”
+Click: Load sample case.
+Then say: “We immediately see six verified exhibits, nine resolved entities,
+and the highest recovery priority.”
+
+0:20–0:35 | EVIDENCE
+Show: click Evidence in the left sidebar; let all six cards be visible.
+Say: “Every source is registered and hash-verified: telecom, bank, IPDR,
+mule records, exchange logs, and the malware manifest. The intake stays local.”
+Point to: the Verified badges and abbreviated SHA-256 hash line.
+
+0:35–0:50 | LINKS
+Show: click Links. Point to the attacker-controlled number row.
+Say: “LinkX explains every identity link. This attacker-controlled number is
+resolved by an IMEI match across evidence E01 and E06 — not a guess or a black
+box confidence score.”
+
+0:50–1:25 | NETWORK — THE MAIN MOMENT
+Show: click Network. Pause for the graph.
+Say: “This is the money trail, from the victim’s account through layered mule
+accounts to the final off-ramp.”
+Click: the Victim account node.
+Say: “Selecting any node exposes its identifiers and supporting exhibits.”
+Click: Highlight full path.
+Say: “With one action, the officer isolates the recovery path: victim, HDFC,
+PNB, the fraud VPA, and finally the exchange wallet.”
+Optional: click the ₹2,60,000 arrow between HDFC and PNB.
+Say: “Each transfer keeps its amount, exact timestamp, and source exhibit.”
+
+1:25–1:45 | RISK & FREEZE
+Show: click Risk & freeze. Keep rank 1 in view.
+Say: “The first recipient is not automatically the first account to freeze.
+LinkX ranks where funds are still recoverable. PNB account ending 7790 is first:
+score 96, residual funds, and high inbound velocity.”
+Click: Recommend freeze.
+Say: “The recommendation is recorded locally for the case officer. No live bank
+instruction is sent from this demo.”
+
+1:45–1:55 | TIMELINE
+Show: click Timeline and scroll lightly from malware installation to complaint.
+Say: “The timeline correlates calls, malware activity, bank movement, IPDR,
+and the complaint down to the second. It makes the sequence easy to explain.”
+
+1:55–2:05 | REPORT
+Show: click Report; center the A4 preview.
+Say: “Finally, LinkX turns the investigation into a printable brief: case
+summary, entity evidence, fund flow, recovery recommendations, and exhibit
+hashes.”
+Click: Export brief. In the browser print window, choose Save as PDF if wanted.
+End with: “From complaint to freeze order, inside the Golden Hour.”
+
+BACKUP / TROUBLESHOOTING
+------------------------
+- If the case is not populated, click Reload sample case on Overview or Evidence.
+- If the graph is too zoomed in, use the target button at the bottom-left of the
+  graph to fit it back on screen.
+- Drag empty graph space to pan; use mouse wheel to zoom.
+- If the sidebar labels are hidden, click the small panel icon near the LinkX
+  logo to expand it.
+- Refreshing the page resets the local demo. Start again at Overview and click
+  Load sample case once.
+
+ONE-SENTENCE CLOSE
+------------------
+“LinkX gives cyber-cell officers an offline, evidence-backed answer to the
+most urgent question in the first hour: where should we act right now?”

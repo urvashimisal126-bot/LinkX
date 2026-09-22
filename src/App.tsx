@@ -1,174 +1,27 @@
-import { useState, useEffect } from 'react';
-import { HashRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-import {
-  LayoutDashboard, FileText, Link2, Share2, AlertTriangle,
-  Clock, ShieldCheck, FileOutput, Settings, X
-} from 'lucide-react';
-import { useCaseStore } from './store/caseStore';
-import OverviewPage from './features/overview/OverviewPage';
-import EvidencePage from './features/evidence/EvidencePage';
-import LinksPage from './features/links/LinksPage';
-import NetworkPage from './features/network/NetworkPage';
-import RiskPage from './features/risk/RiskPage';
-import TimelinePage from './features/timeline/TimelinePage';
-import IntegrityPage from './features/integrity/IntegrityPage';
-import ReportPage from './features/report/ReportPage';
-import SystemDrawer from './features/system/SystemDrawer';
-import SplashScreen from './features/splash/SplashScreen';
-
-const NAV_ITEMS = [
-  { path: '/',          label: 'Overview',       icon: LayoutDashboard },
-  { path: '/evidence',  label: 'Evidence',        icon: FileText },
-  { path: '/links',     label: 'Links',           icon: Link2 },
-  { path: '/network',   label: 'Network',         icon: Share2 },
-  { path: '/risk',      label: 'Risk and freeze', icon: AlertTriangle },
-  { path: '/timeline',  label: 'Timeline',        icon: Clock },
-  { path: '/integrity', label: 'Integrity',       icon: ShieldCheck },
-  { path: '/report',    label: 'Report',          icon: FileOutput },
+import { useEffect, useState } from 'react';
+import { HashRouter, NavLink, Route, Routes, useLocation } from 'react-router-dom';
+import { ArrowRight, ArrowUpRight, PanelLeftClose, PanelLeftOpen, LayoutDashboard, Files, Link2, Network, Snowflake, Clock3, ShieldCheck, FileOutput, Settings, WifiOff, LockKeyhole, Upload, Fingerprint } from 'lucide-react';
+import { useDemoStore } from './store/demoStore';
+import { Overview, Evidence, Links, NetworkPage, Risk, Timeline, Integrity, Report, System } from './DemoPages';
+const navigation = [
+  { path: '/', name: 'Overview', icon: LayoutDashboard }, { path: '/evidence', name: 'Evidence', icon: Files },
+  { path: '/links', name: 'Links', icon: Link2 }, { path: '/network', name: 'Network', icon: Network },
+  { path: '/risk', name: 'Risk & freeze', icon: Snowflake }, { path: '/timeline', name: 'Timeline', icon: Clock3 },
+  { path: '/integrity', name: 'Integrity', icon: ShieldCheck }, { path: '/report', name: 'Report', icon: FileOutput },
 ];
-
-function Shell() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { caseData, evidenceFiles, systemDrawerOpen, setSystemDrawerOpen } = useCaseStore();
-
-  const [showSplash, setShowSplash] = useState(true);
-
-  // Replay shortcut: Shift + L on empty screen or anywhere
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.shiftKey && (e.key === 'L' || e.key === 'l')) {
-        // Allow replaying splash
-        setShowSplash(true);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
-  const hasMismatch = evidenceFiles.some(e => e.status === 'mismatch');
-  const allVerified = evidenceFiles.length > 0 && evidenceFiles.every(e => e.status === 'verified');
-
-  return (
-    <>
-      {showSplash && <SplashScreen onComplete={() => setShowSplash(false)} />}
-      <div className="shell" role="application">
-        {/* Topbar */}
-        <header className="topbar shell-topbar" role="banner">
-          <div className="topbar-wordmark" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <img
-              src="/brand/linkx-mark-white.svg"
-              alt="LinkX"
-              style={{ height: 26, width: 'auto', display: 'block' }}
-            />
-            <span style={{ fontFamily: 'Inter, system-ui, sans-serif', fontWeight: 600, fontSize: 14, color: '#FFFFFF', letterSpacing: '-0.01em' }}>LinkX</span>
-          </div>
-        <div className="topbar-sep" aria-hidden="true" />
-        <span className="topbar-case">{caseData ? caseData.id : 'No case loaded'}</span>
-        <div className="topbar-right">
-          <span className="topbar-badge topbar-badge--local" role="status">
-            <svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
-            Local mode
-          </span>
-          {hasMismatch ? (
-            <span className="topbar-badge topbar-badge--mismatch" role="alert">⚠ Hash mismatch</span>
-          ) : allVerified ? (
-            <span className="topbar-badge topbar-badge--verified">✓ Verified</span>
-          ) : null}
-          <button
-            className="btn btn-secondary btn-sm"
-            onClick={() => navigate('/report')}
-            aria-label="Go to export report"
-          >
-            Export brief
-          </button>
-          <button
-            className="btn btn-ghost btn-sm"
-            onClick={() => setSystemDrawerOpen(true)}
-            aria-label="Open system panel"
-            aria-expanded={systemDrawerOpen}
-          >
-            <Settings size={14} />
-            System
-          </button>
-        </div>
-      </header>
-
-
-      {/* Left rail */}
-      <nav className="rail shell-rail" aria-label="Screen navigation">
-        <div className="rail-section-label">Investigation</div>
-        {NAV_ITEMS.map(({ path, label, icon: Icon }) => {
-          const active = location.pathname === path || (path !== '/' && location.pathname.startsWith(path));
-          return (
-            <button
-              key={path}
-              className={`nav-item ${active ? 'nav-item--active' : ''}`}
-              onClick={() => navigate(path)}
-              aria-current={active ? 'page' : undefined}
-            >
-              <Icon size={16} className="nav-item__icon" aria-hidden="true" />
-              {label}
-            </button>
-          );
-        })}
-      </nav>
-
-      {/* Main content area */}
-      <main className="shell-main" role="main">
-        <div className="shell-content" id="main-content" tabIndex={-1}>
-          <Routes>
-            <Route path="/"          element={<OverviewPage />} />
-            <Route path="/evidence"  element={<EvidencePage />} />
-            <Route path="/links"     element={<LinksPage />} />
-            <Route path="/network"   element={<NetworkPage />} />
-            <Route path="/risk"      element={<RiskPage />} />
-            <Route path="/timeline"  element={<TimelinePage />} />
-            <Route path="/integrity" element={<IntegrityPage />} />
-            <Route path="/report"    element={<ReportPage />} />
-          </Routes>
-        </div>
-      </main>
-
-      {/* System drawer */}
-      {systemDrawerOpen && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label="System information"
-          style={{
-            position: 'fixed', inset: 0, zIndex: 999,
-            display: 'flex', justifyContent: 'flex-end',
-          }}
-        >
-          <div
-            style={{ flex: 1, background: 'rgba(28,35,43,0.3)' }}
-            onClick={() => setSystemDrawerOpen(false)}
-            aria-label="Close system panel"
-          />
-          <div style={{ width: 420, background: 'var(--panel)', boxShadow: 'var(--shadow-drawer)', overflow: 'auto' }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderBottom: '1px solid var(--border)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <img src="/brand/linkx-mark.svg" alt="LinkX" style={{ height: 22, width: 'auto', display: 'block' }} />
-                <span style={{ fontWeight: 600, fontSize: 15, color: 'var(--ink)' }}>System</span>
-              </div>
-              <button className="btn btn-ghost btn-sm" onClick={() => setSystemDrawerOpen(false)} aria-label="Close">
-                <X size={14} />
-              </button>
-            </div>
-            <SystemDrawer />
-          </div>
-        </div>
-      )}
-    </div>
-    </>
-  );
+function Brand({ full = true }: { full?: boolean }) { return <div className="brand"><span className="brand-symbol">L<span>↔</span>X</span>{full && <strong>LinkX<span>Investigation intelligence</span></strong>}</div>; }
+function Landing() {
+  return <div className="landing"><header className="landing-nav"><Brand/><span><LockKeyhole size={14}/>Built for a world without a connection.</span><a href="#/" className="text-link">Enter workspace <ArrowUpRight size={16}/></a></header><main><section className="hero"><div className="hero-copy"><div className="hero-kicker"><span className="status-dot"/>Offline cyber-fraud investigation</div><h1>From complaint<br/>to freeze order —<br/><em>in the Golden Hour.</em></h1><p>Connect scattered evidence, follow the stolen money, and identify where to act next. All on one device.</p><a className="button primary hero-cta" href="#/">Enter workspace <ArrowRight size={18}/></a><div className="hero-assurance"><ShieldCheck size={15}/>Evidence connected. Privacy preserved.</div></div><div className="hero-dossier"><div className="dossier-tab"><Files size={15}/>Case intelligence / LinkX</div><div className="dossier-paper"><div className="dossier-top"><span className="mono">LX-2026-0918-A</span><span className="badge amber"><Clock3 size={12}/>Golden Hour</span></div><h2>One case.<br/>See the whole picture.</h2><div className="dossier-amount"><span>Reported loss</span><strong className="mono">₹4,85,000</strong></div><div className="hero-trail"><div><span className="trail-dot"/><span>Victim account<small className="mono">••4471 · Unauthorized debit</small></span><span className="mono">₹4,85,000</span></div><div><span className="trail-dot"/><span>Layered mule accounts<small>Three accounts. One connected trail.</small></span><Network size={18}/></div><div><span className="trail-dot teal"/><span>Priority freeze target<small className="mono">PNB ••7790 · Funds present</small></span><span className="score-mini">96<small>/100</small></span></div></div><div className="dossier-bottom"><ShieldCheck size={17}/><span>6 exhibits. 9 entities. A clear next step.</span><ArrowUpRight size={18}/></div></div><div className="dossier-label"><WifiOff size={14}/>Fictional sample case · Entirely on-device</div></div></section><section className="landing-stats"><div><strong>₹22,845 Cr</strong><span>lost to cyber fraud in India in 2024</span></div><div><strong>5.24 lakh</strong><span>mule accounts flagged in March 2026</span></div><div><strong>100<span>%</span></strong><span>offline. Zero external requests.</span></div></section><p className="source-note">Context figures supplied in the LinkX demo brief · India, 2024 / March 2026.</p><section className="pipeline"><div className="pipeline-heading"><span className="eyebrow">From scattered records to decisive action</span><h2>Less searching. More connecting.</h2></div><div className="pipeline-steps">{[[Upload, 'Ingest', 'Bring every source into the case.'], [Fingerprint, 'Link', 'Resolve identities with evidence.'], [Network, 'Map', 'Trace every layer of the money.'], [Snowflake, 'Freeze', 'Prioritize funds you can recover.']].map(([Icon, title, text], i) => { const I = Icon as typeof Upload; return <div key={String(title)}><div><I size={23}/><span className="mono">0{i + 1}</span></div><h3>{String(title)}</h3><p>{String(text)}</p></div>; })}</div></section></main><footer className="landing-footer"><Brand full={false}/><span>Team LinkX · Void Hacks 8.0</span><span>Built for the first hour.</span></footer></div>;
 }
-
+function Shell() {
+  const [expanded, setExpanded] = useState(false);
+  const data = useDemoStore(s => s.caseData);
+  const location = useLocation();
+  useEffect(() => { document.querySelector('.main-content')?.scrollTo(0, 0); }, [location.pathname]);
+  return <div className={`app-shell ${expanded ? 'expanded' : ''}`}><a href="#main-content" className="skip-link" onClick={e => { e.preventDefault(); document.getElementById('main-content')?.focus(); }}>Skip to content</a><aside className="sidebar"><a href="/" className="sidebar-brand" aria-label="LinkX home"><Brand full={expanded}/></a><button className="rail-toggle" aria-label={expanded ? 'Collapse sidebar' : 'Expand sidebar'} aria-expanded={expanded} onClick={() => setExpanded(!expanded)}>{expanded ? <PanelLeftClose size={19}/> : <PanelLeftOpen size={19}/>}<span>Collapse sidebar</span></button><div className="nav-section">Investigation</div><nav aria-label="Investigation">{navigation.map(({ path, name, icon: Icon }) => <NavLink to={path} end key={path} title={name} aria-label={name} className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}><Icon size={20}/><span>{name}</span></NavLink>)}</nav><div className="sidebar-bottom"><NavLink to="/system" title="System" aria-label="System" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}><Settings size={20}/><span>System</span></NavLink><div className="rail-offline" title="Offline workspace"><WifiOff size={17}/><span>Offline workspace</span></div></div></aside><div className="app-body"><header className="topbar"><div className="topbar-context"><span>Workspace</span><span className="topbar-divider">/</span><span className="case-chip mono">{data?.id || 'New investigation'}</span>{data && <span className="integrity-chip"><ShieldCheck size={14}/>Integrity verified</span>}</div><div className="topbar-actions"><a href="#/system" className="local-chip"><span className="status-dot"/>Local mode</a><a className="button small" href="#/report"><FileOutput size={15}/>Export brief</a></div></header><main id="main-content" className="main-content" tabIndex={-1}><Routes><Route path="/" element={<Overview/>}/><Route path="/evidence" element={<Evidence/>}/><Route path="/links" element={<Links/>}/><Route path="/network" element={<NetworkPage/>}/><Route path="/risk" element={<Risk/>}/><Route path="/timeline" element={<Timeline/>}/><Route path="/integrity" element={<Integrity/>}/><Route path="/report" element={<Report/>}/><Route path="/system" element={<System/>}/><Route path="*" element={<Overview/>}/></Routes></main><footer className="workspace-footer"><span><LockKeyhole size={11}/>Evidence stays on this device</span><span>LinkX · Demo workspace</span></footer></div></div>;
+}
 export default function App() {
-  return (
-    <HashRouter>
-      <Shell />
-    </HashRouter>
-  );
+  const [workspace, setWorkspace] = useState(() => window.location.hash.startsWith('#/'));
+  useEffect(() => { const onHash = () => setWorkspace(window.location.hash.startsWith('#/')); window.addEventListener('hashchange', onHash); return () => window.removeEventListener('hashchange', onHash); }, []);
+  return workspace ? <HashRouter><Shell/></HashRouter> : <Landing/>;
 }
